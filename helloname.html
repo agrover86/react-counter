@@ -11,14 +11,39 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
     <script type="text/babel">
       class HelloName extends React.Component {
+        constructor(props){
+           super(props);
+           this.state = {
+             rank: 15
+           }
+         }
+
        render () {
-         return <h1>Hello, {this.props.name} </h1>;
+         return (
+           <div>
+           <img src={this.props.image} alt="Profile Picture"/>
+           <h1>Welcome, {this.props.name} </h1>
+           <h3>Current rank: {this.state.rank}</h3>
+           <p>Your time zone: GMT  {this.props.date.getTimezoneOffset()/-60} </p>
+           </div>
+         );
        }
     }
-      ReactDOM.render(
-        <HelloName name="Amit Grover" />,
-        document.getElementById('app')
-     );
+    const info = {
+      date: new Date(),
+      name: 'Amit Grover',
+      image: 'https://media-exp2.licdn.com/mpr/mpr/shrink_100_100/AAEAAQAAAAAAAAtoAAAAJDA3ODAyMmI4LWRlYmYtNGRmNC05MTk2LWQwNDZkY2RhZjkzMA.jpg'
+    }
+
+
+
+    ReactDOM.render(
+      <HelloName
+        date={info.date}
+        name={info.name}
+        image={info.image}/>,document.getElementById('app')
+    );
+
     </script>
  </body>
 </html>
